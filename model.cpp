@@ -11,7 +11,9 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    mCameraDevices = QMediaDevices::videoInputs();
+    findAllCameras();
+
+    findAllMicrophones();
 
     mCamera = new QCamera;
 
@@ -31,6 +33,16 @@ Model::Model(QObject *parent)
     mRecorder->setMediaFormat(mFormat);
 
 
+}
+
+void Model::findAllCameras()
+{
+    mCameraDevices = QMediaDevices::videoInputs();
+}
+
+void Model::findAllMicrophones()
+{
+    mMicrophoneDevices = QMediaDevices::audioInputs();
 }
 
 void Model::changeCameraDevice(const QString& cameraName)

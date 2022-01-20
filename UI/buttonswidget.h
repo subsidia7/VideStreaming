@@ -17,6 +17,10 @@ public:
     QPushButton* mStopRecBut;
     QPushButton* mStopCameraBut;
     QComboBox* cameraChooseBox;
+    QComboBox* microphoneChooseBox;
+
+    void fillCameraChooseBox(const QStringList&);
+    void fillMicrophoneChooseBox(const QStringList&);
 private:
 
 };

@@ -15,6 +15,7 @@
 #include <QFileDialog>
 #include <QComboBox>
 #include <QMediaRecorder>
+#include <QAudioDevice>
 
 
 QTextStream out(stdout);
@@ -24,7 +25,9 @@ Controller::Controller(MainWindow* view, Model* model)
 {
     bw = mView->buttonsWidget;
 
-    findAllCameras();
+    fillCameraChooseBox();
+    fillMicrophoneChooseBox();
+
     changeCamera();
 
     mModel->mCaptureSession->setVideoOutput(mView->mCameraView);
@@ -32,15 +35,26 @@ Controller::Controller(MainWindow* view, Model* model)
     setupConnections();
 }
 
-void Controller::findAllCameras()
+void Controller::fillCameraChooseBox()
 {
-    mModel->mCameraDevices = QMediaDevices::videoInputs();
+    QStringList items;
     for (const QCameraDevice& device : mModel->mCameraDevices)
     {
         QString s_device = device.description();
-        bw->cameraChooseBox->addItem(s_device);
-        out << s_device << Qt::endl;
+        items.append(s_device);
     }
+    bw->fillCameraChooseBox(items);
+}
+
+void Controller::fillMicrophoneChooseBox()
+{
+    QStringList items;
+    for (const QAudioDevice& device : mModel->mMicrophoneDevices)
+    {
+        QString s_device = device.description();
+        items.append(s_device);
+    }
+    bw->fillMicrophoneChooseBox(items);
 }
 
 void Controller::setupConnections()

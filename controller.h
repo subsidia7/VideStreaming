@@ -17,7 +17,8 @@ private:
     Model* mModel;
 
     void setupConnections();
-    void findAllCameras();
+    void fillCameraChooseBox();
+    void fillMicrophoneChooseBox();
 
     void changeCamera();
     void startCamera();

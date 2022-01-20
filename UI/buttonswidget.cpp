@@ -10,6 +10,8 @@ ButtonsWidget::ButtonsWidget(QWidget *parent)
 {
     cameraChooseBox = new QComboBox(this);
 
+    microphoneChooseBox = new QComboBox(this);
+
     mStartCameraBut = new QPushButton("Start camera", this);
     mStartCameraBut->setStyleSheet( "QPushButton{border: 2px solid blue;}" );
 
@@ -30,16 +32,44 @@ ButtonsWidget::ButtonsWidget(QWidget *parent)
     mStopCameraBut->setEnabled(false);
 
     QVBoxLayout* mButtonsLayout = new QVBoxLayout;
-    QLabel* lab = new QLabel("Choose Camera Device:", this);
+    QLabel* camLabel = new QLabel("Choose Camera Device:", this);
+    QLabel* micLabel = new QLabel("Choose Microphone Device:", this);
 
-    mButtonsLayout->addWidget(lab, 1, Qt::AlignBottom);
-    mButtonsLayout->addWidget(cameraChooseBox, 3);
-    mButtonsLayout->addWidget(mStartCameraBut, 3);
-    mButtonsLayout->addWidget(mPhotoBut, 3);
-    mButtonsLayout->addWidget(mStartRecBut, 3);
-    mButtonsLayout->addWidget(mStopRecBut, 3);
-    mButtonsLayout->addWidget(mStopCameraBut, 3);
+    mButtonsLayout->addWidget(camLabel);
+    mButtonsLayout->addWidget(cameraChooseBox);
+    mButtonsLayout->addWidget(micLabel);
+    mButtonsLayout->addWidget(microphoneChooseBox);
+    mButtonsLayout->addStretch(1);
+    mButtonsLayout->addWidget(mStartCameraBut);
+    mButtonsLayout->addWidget(mPhotoBut);
+    mButtonsLayout->addWidget(mStartRecBut);
+    mButtonsLayout->addWidget(mStopRecBut);
+    mButtonsLayout->addWidget(mStopCameraBut);
 
     setLayout(mButtonsLayout);
 
 }
+
+void ButtonsWidget::fillCameraChooseBox(const QStringList& items)
+{
+    cameraChooseBox->addItems(items);
+}
+void ButtonsWidget::fillMicrophoneChooseBox(const QStringList& items)
+{
+    microphoneChooseBox->addItems(items);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

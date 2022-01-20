@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QCameraDevice>
+#include <QAudioDevice>
 #include "controller.h"
 
 class QCamera;
@@ -20,6 +21,7 @@ public:
     friend class Controller;
 private:
     QList<QCameraDevice> mCameraDevices;
+    QList<QAudioDevice> mMicrophoneDevices;
     QCamera* mCamera;
     QMediaCaptureSession* mCaptureSession;
     QImageCapture* mImageCapture;
@@ -27,6 +29,9 @@ private:
     //QMediaFormat* mFormat;
     int mCurrentCameraI;
     QString mCurrentCameraName;
+
+    void findAllCameras();
+    void findAllMicrophones();
 
     void changeCameraDevice(const QString&);
 };
