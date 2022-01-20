@@ -4,6 +4,17 @@
 #include <QComboBox>
 #include <QLabel>
 
+QString buttonStyle = "QPushButton {\n"
+                      "background-color: green;\n"
+                      "border-style: outset;\n"
+                      "border-width: 2px;\n"
+                      "border-radius: 10px;\n"
+                      "border-color: beige;\n"
+                      "font: bold 14px;\n"
+                      "min-width: 10em;\n"
+                      "padding: 6px;\n"
+                      "}\n";
+
 
 ButtonsWidget::ButtonsWidget(QWidget *parent)
     : QWidget{parent}
@@ -13,22 +24,22 @@ ButtonsWidget::ButtonsWidget(QWidget *parent)
     microphoneChooseBox = new QComboBox(this);
 
     mStartCameraBut = new QPushButton("Start camera", this);
-    mStartCameraBut->setStyleSheet( "QPushButton{border: 2px solid blue;}" );
+    mStartCameraBut->setStyleSheet(buttonStyle);
 
     mPhotoBut = new QPushButton("Make photo", this);
-    mPhotoBut->setStyleSheet( "QPushButton{border: 2px solid green;}" );
+    mPhotoBut->setStyleSheet(buttonStyle);
     mPhotoBut->setEnabled(false);
 
     mStartRecBut = new QPushButton("Start record", this);
-    mStartRecBut->setStyleSheet( "QPushButton{border: 2px solid blue;}" );
+    mStartRecBut->setStyleSheet(buttonStyle);
     mStartRecBut->setEnabled(false);
 
     mStopRecBut = new QPushButton("Stop record", this);
-    mStopRecBut->setStyleSheet( "QPushButton{border: 2px solid red;}" );
+    mStopRecBut->setStyleSheet(buttonStyle);
     mStopRecBut->setEnabled(false);
 
     mStopCameraBut = new QPushButton("Stop camera", this);
-    mStopCameraBut->setStyleSheet( "QPushButton{border: 2px solid red;}" );
+    mStopCameraBut->setStyleSheet(buttonStyle);
     mStopCameraBut->setEnabled(false);
 
     QVBoxLayout* mButtonsLayout = new QVBoxLayout;
