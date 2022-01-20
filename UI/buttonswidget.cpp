@@ -5,7 +5,7 @@
 #include <QLabel>
 
 QString buttonStyle = "QPushButton {\n"
-                      "background-color: green;\n"
+                      "background-color: white;\n"
                       "border-style: outset;\n"
                       "border-width: 2px;\n"
                       "border-radius: 10px;\n"
@@ -15,13 +15,33 @@ QString buttonStyle = "QPushButton {\n"
                       "padding: 6px;\n"
                       "}\n";
 
+QString comboBoxStyle =  "QComboBox {\n"
+                         "position: relative;\n"
+                         "height: 28px;\n"
+                         "width: 150px;\n"
+                         "background: #f2f2f2;\n"
+                         "border: 2px solid;\n"
+                         "border-color: black;\n"
+                         "border-radius: 3px;\n"
+                         "background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));\n"
+                         "background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));\n"
+                         "background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));\n"
+                         "background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));\n"
+                         "}\n";
+
+QString labelStyle = "QLabel {\n"
+                     "font: bold 14px;\n"
+                     "}\n";
+
 
 ButtonsWidget::ButtonsWidget(QWidget *parent)
     : QWidget{parent}
 {
     cameraChooseBox = new QComboBox(this);
+    cameraChooseBox->setStyleSheet(comboBoxStyle);
 
     microphoneChooseBox = new QComboBox(this);
+    microphoneChooseBox->setStyleSheet(comboBoxStyle);
 
     mStartCameraBut = new QPushButton("Start camera", this);
     mStartCameraBut->setStyleSheet(buttonStyle);
@@ -44,7 +64,9 @@ ButtonsWidget::ButtonsWidget(QWidget *parent)
 
     QVBoxLayout* mButtonsLayout = new QVBoxLayout;
     QLabel* camLabel = new QLabel("Choose Camera Device:", this);
+    camLabel->setStyleSheet(labelStyle);
     QLabel* micLabel = new QLabel("Choose Microphone Device:", this);
+    micLabel->setStyleSheet(labelStyle);
 
     mButtonsLayout->addWidget(camLabel);
     mButtonsLayout->addWidget(cameraChooseBox);
