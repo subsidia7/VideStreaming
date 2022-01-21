@@ -76,12 +76,21 @@ void Controller::setupConnections()
 
     connect(bw->cameraChooseBox, &QComboBox::currentTextChanged, this,
             &Controller::changeCamera);
+
+    connect(bw->microphoneChooseBox, &QComboBox::currentTextChanged, this,
+            &Controller::changeMicrophone);
 }
 
 void Controller::changeCamera()
 {
     QString cameraName = bw->cameraChooseBox->currentText();
     mModel->changeCameraDevice(cameraName);
+}
+
+void Controller::changeMicrophone()
+{
+    QString microphoneName = bw->microphoneChooseBox->currentText();
+    mModel->changeMicrophoneDevice(microphoneName);
 }
 
 void Controller::startCamera()

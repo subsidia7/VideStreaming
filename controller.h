@@ -20,7 +20,9 @@ private:
     void fillCameraChooseBox();
     void fillMicrophoneChooseBox();
 
+    void changeMicrophone();
     void changeCamera();
+
     void startCamera();
     void makePhoto();
     void startRec();

@@ -6,6 +6,8 @@
 #include <QImageCapture>
 #include <QMediaRecorder>
 #include <QMediaFormat>
+#include <QAudioInput>
+#include <QAudioFormat>
 
 
 Model::Model(QObject *parent)
@@ -29,8 +31,14 @@ Model::Model(QObject *parent)
     QMediaFormat mFormat(QMediaFormat::MPEG4);
     mFormat.setVideoCodec(QMediaFormat::VideoCodec::H264);
     mFormat.setAudioCodec(QMediaFormat::AudioCodec::MP3);
-
     mRecorder->setMediaFormat(mFormat);
+
+    mMicrophone = new QAudioInput;
+    QAudioFormat format;
+    // Set up the desired format, for example:
+    format.setSampleRate(8000);
+    format.setChannelCount(1);
+    mCaptureSession->setAudioInput(mMicrophone);
 
 
 }
@@ -56,6 +64,21 @@ void Model::changeCameraDevice(const QString& cameraName)
         {
             mCamera->setCameraDevice(device);
             mCurrentCameraName = s_device;
+        }
+    }
+}
+
+void Model::changeMicrophoneDevice(const QString& microphoneName)
+{
+    if (microphoneName == mCurrentMicrophoneName)
+        return;
+    for (const QAudioDevice& device : mMicrophoneDevices)
+    {
+        QString s_device = device.description();
+        if (s_device == microphoneName)
+        {
+            mMicrophone->setDevice(device);
+            mCurrentMicrophoneName = s_device;
         }
     }
 }

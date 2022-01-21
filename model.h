@@ -10,6 +10,7 @@ class QCamera;
 class QMediaCaptureSession;
 class QImageCapture;
 class QMediaRecorder;
+class QAudioInput;
 //class QMediaFormat;
 
 
@@ -23,17 +24,19 @@ private:
     QList<QCameraDevice> mCameraDevices;
     QList<QAudioDevice> mMicrophoneDevices;
     QCamera* mCamera;
+    QAudioInput* mMicrophone;
     QMediaCaptureSession* mCaptureSession;
     QImageCapture* mImageCapture;
     QMediaRecorder* mRecorder;
     //QMediaFormat* mFormat;
     int mCurrentCameraI;
     QString mCurrentCameraName;
-
+    QString mCurrentMicrophoneName;
     void findAllCameras();
     void findAllMicrophones();
 
     void changeCameraDevice(const QString&);
+    void changeMicrophoneDevice(const QString&);
 };
 
 #endif // MODEL_H
